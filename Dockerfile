@@ -24,3 +24,6 @@ EXPOSE 3000
 CMD ["npm", "start"]
 # If you are using yarn, use:
 # CMD ["yarn", "start"]
+
+### docker build -t my-react-app .
+#### docker run -p 3000:3000 my-react-app
