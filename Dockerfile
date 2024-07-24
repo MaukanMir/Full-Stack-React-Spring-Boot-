@@ -1,29 +1,21 @@
-# Use an official Node runtime as a parent image
-FROM node:14
+# Use an official Node.js runtime as the parent image
+FROM node:latest
 
-# Set the working directory
+# Set the working directory inside the container to /app
 WORKDIR /app
 
-# Copy package.json and package-lock.json (or yarn.lock) for dependency installation
-COPY package*.json ./
-# If you are using yarn, copy yarn.lock as well
-# COPY package.json yarn.lock ./
+# Install create-react-app and use it to create a new React project called "my-react-app"
+RUN npx create-react-app my-react-app
 
-# Install dependencies
-RUN npm install
-# If you are using yarn, use:
-# RUN yarn install
+# Change the working directory to the newly created React app
+WORKDIR /app/my-react-app
 
-# Bundle app source
-COPY . .
-
-# Expose the port the app runs on
+# Expose port 3000 to access the server
 EXPOSE 3000
 
-# Define the command to run the app
+# Command to run the application
 CMD ["npm", "start"]
-# If you are using yarn, use:
-# CMD ["yarn", "start"]
+
 
 ### docker build -t my-react-app .
 #### docker run -p 3000:3000 my-react-app
